@@ -21,9 +21,11 @@ import { useMixPanelChapterLogUploader } from '@/utils/mixpanel'
 import { useAtom, useAtomValue, useSetAtom } from 'jotai'
 import type React from 'react'
 import { useCallback, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useImmerReducer } from 'use-immer'
 
 const App: React.FC = () => {
+  const { t } = useTranslation()
   const [state, dispatch] = useImmerReducer(typingReducer, structuredClone(initialState))
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const { words } = useWordList()
@@ -41,14 +43,12 @@ const App: React.FC = () => {
     // 检测用户设备
     if (!IsDesktop()) {
       setTimeout(() => {
-        alert(
-          ' Qwerty Learner 目的为提高键盘工作者的英语输入效率，目前暂未适配移动端，希望您使用桌面端浏览器访问。如您使用的是 Ipad 等平板电脑设备，可以使用外接键盘使用本软件。',
-        )
+        alert(t('common.mobileWarning'))
       }, 500)
     }
-  }, [])
+  }, [t])
 
-  // 在组件挂载和currentDictId改变时，检查当前字典是否存在，如果不存在，则将其重置为默认值
+  // Check if current dictionary exists when component mounts and currentDictId changes, reset to default if not exists
   useEffect(() => {
     const id = currentDictId
     if (!(id in idDictionaryMap)) {
@@ -104,7 +104,7 @@ const App: React.FC = () => {
   }, [words])
 
   useEffect(() => {
-    // 当用户完成章节后且完成 word Record 数据保存，记录 chapter Record 数据,
+    // When user completes chapter and word Record data is saved, record chapter Record data
     if (state.isFinished && !state.isSavingRecord) {
       chapterLogUploader()
       saveChapterRecord(state)
@@ -114,7 +114,7 @@ const App: React.FC = () => {
   }, [state.isFinished, state.isSavingRecord])
 
   useEffect(() => {
-    // 启动计时器
+    // Start timer
     let intervalId: number
     if (state.isTyping) {
       intervalId = window.setInterval(() => {
@@ -136,14 +136,14 @@ const App: React.FC = () => {
           <PronunciationSwitcher />
           <Switcher />
           <StartButton isLoading={isLoading} />
-          <Tooltip content="跳过该词">
+          <Tooltip content={t('typing.skip')}>
             <button
               className={`${
                 state.isShowSkip ? 'bg-orange-400' : 'invisible w-0 bg-gray-300 px-0 opacity-0'
               } my-btn-primary transition-all duration-300 `}
               onClick={skipWord}
             >
-              Skip
+              {t('typing.skip')}
             </button>
           </Tooltip>
         </Header>

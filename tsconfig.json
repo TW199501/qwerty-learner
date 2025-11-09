@@ -9,13 +9,13 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
+    "module": "ESNext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["node", "unplugin-icons/types/react"],
+    "types": ["vite/client", "node", "unplugin-icons/types/react"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]

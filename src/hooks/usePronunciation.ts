@@ -3,11 +3,12 @@ import type { PronunciationType } from '@/typings'
 import { addHowlListener } from '@/utils'
 import { romajiToHiragana } from '@/utils/kana'
 import noop from '@/utils/noop'
-import type { Howl } from 'howler'
+import type { Howl, HowlOptions } from 'howler'
 import { useAtomValue } from 'jotai'
 import { useEffect, useMemo, useState } from 'react'
 import useSound from 'use-sound'
-import type { HookOptions } from 'use-sound/dist/types'
+
+type SoundOverrides = Pick<HowlOptions, 'html5' | 'format' | 'loop' | 'rate'>
 
 const pronunciationApi = 'https://dict.youdao.com/dictvoice?audio='
 export function generateWordSoundSrc(word: string, pronunciation: Exclude<PronunciationType, false>): string {
@@ -39,13 +40,13 @@ export default function usePronunciationSound(word: string, isLoop?: boolean) {
   const loop = useMemo(() => (typeof isLoop === 'boolean' ? isLoop : pronunciationConfig.isLoop), [isLoop, pronunciationConfig.isLoop])
   const [isPlaying, setIsPlaying] = useState(false)
 
-  const [play, { stop, sound }] = useSound(generateWordSoundSrc(word, pronunciationConfig.type), {
+  const [play, { stop, sound }] = useSound<SoundOverrides>(generateWordSoundSrc(word, pronunciationConfig.type), {
     html5: true,
     format: ['mp3'],
     loop,
     volume: pronunciationConfig.volume,
     rate: pronunciationConfig.rate,
-  } as HookOptions)
+  })
 
   useEffect(() => {
     if (!sound) return

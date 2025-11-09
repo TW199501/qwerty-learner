@@ -113,5 +113,8 @@ export const dismissStartCardDateAtom = atomWithStorage<Date | null>(DISMISS_STA
 // Enhanced version promotion popup state
 export const hasSeenEnhancedPromotionAtom = atomWithStorage('hasSeenEnhancedPromotion', false)
 
+// Language configuration atom
+export const languageAtom = atomWithStorage('language', 'en')
+
 // for dev test
 //   dismissStartCardDateAtom = atom<Date | null>(new Date())

@@ -1,5 +1,7 @@
 import Loading from './components/Loading'
 import './index.css'
+import './locales/i18n'
+// Import i18n configuration
 import { ErrorBook } from './pages/ErrorBook'
 import { FriendLinks } from './pages/FriendLinks'
 import MobilePage from './pages/Mobile'
@@ -15,8 +17,8 @@ import 'react-app-polyfill/stable'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 
-const AnalysisPage = lazy(() => import('./pages/Analysis'))
-const GalleryPage = lazy(() => import('./pages/Gallery-N'))
+const AnalysisPage = lazy(() => import('./pages/Analysis') as any)
+const GalleryPage = lazy(() => import('./pages/Gallery-N') as any)
 
 if (process.env.NODE_ENV === 'production') {
   // for prod
@@ -68,7 +70,7 @@ function Root() {
           </Routes>
         </Suspense>
       </BrowserRouter>
-      <Analytics />
+      {typeof Analytics !== 'undefined' && <Analytics />}
     </React.StrictMode>
   )
 }

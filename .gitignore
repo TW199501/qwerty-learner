@@ -34,3 +34,10 @@ stats.html
 /blob-report/
 /playwright/.cache/
 playwright-report
+
+# KiloCode MCP settings
+.kilocode/
+.kilocode/mcp.json
+
+# plan & task management
+.plan.tasks/

@@ -11,8 +11,10 @@ import type { Word } from '@/typings'
 import { useAtomValue, useSetAtom } from 'jotai'
 import { useCallback, useContext, useMemo, useState } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
+import { useTranslation } from 'react-i18next'
 
 export default function WordPanel() {
+  const { t } = useTranslation()
   // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
   const { state, dispatch } = useContext(TypingContext)!
   const phoneticConfig = useAtomValue(phoneticConfigAtom)
@@ -53,7 +55,7 @@ export default function WordPanel() {
 
   const onFinish = useCallback(() => {
     if (state.chapterData.index < state.chapterData.words.length - 1 || currentWordExerciseCount < loopWordTimes - 1) {
-      // 用户完成当前单词
+      // User completes current word
       if (currentWordExerciseCount < loopWordTimes - 1) {
         setCurrentWordExerciseCount((old) => old + 1)
         dispatch({ type: TypingStateActionType.LOOP_CURRENT_WORD })
@@ -72,7 +74,7 @@ export default function WordPanel() {
         }
       }
     } else {
-      // 用户完成当前章节
+      // User completes current chapter
       dispatch({ type: TypingStateActionType.FINISH_CHAPTER })
       if (isReviewMode) {
         setReviewModeInfo((old) => ({ ...old, reviewRecord: old.reviewRecord ? { ...old.reviewRecord, isFinished: true } : undefined }))
@@ -165,7 +167,7 @@ export default function WordPanel() {
               <div className="absolute flex h-full w-full justify-center">
                 <div className="z-10 flex w-full items-center backdrop-blur-sm">
                   <p className="w-full select-none text-center text-xl text-gray-600 dark:text-gray-50">
-                    按任意键{state.timerData.time ? '继续' : '开始'}
+                    {state.timerData.time ? t('typing.pressAnyKeyContinue') : t('typing.pressAnyKeyStart')}
                   </p>
                 </div>
               </div>
