@@ -1,4 +1,4 @@
-import { changeLanguage, LANGUAGE_PRIORITY } from '@/locales/i18n'
+import { LANGUAGE_PRIORITY, changeLanguage } from '@/locales/i18n'
 import { languageAtom } from '@/store/index'
 import { useAtom } from 'jotai'
 import React from 'react'

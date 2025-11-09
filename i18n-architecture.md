@@ -6,7 +6,7 @@
 
 ## 2. 技术栈
 
-- **react-i18next**: React集成
+- **react-i18next**: React 集成
 - **i18next**: 核心国际化库
 - **i18next-browser-languagedetector**: 浏览器语言检测
 - **Jotai**: 状态管理（与现有系统集成）
@@ -35,7 +35,7 @@ const detectionOptions = {
   order: ['localStorage', 'navigator', 'htmlTag'],
   lookupLocalStorage: 'i18nextLng',
   caches: ['localStorage'],
-  fallbackLng: 'en' // 默认英文
+  fallbackLng: 'en', // 默认英文
 }
 
 // 支持语言列表（按优先级排序）
@@ -55,7 +55,7 @@ const supportedLngs = ['en', 'zh-TW', 'zh-CN']
     "settings": "Settings"
 }
 
-// 组件级别  
+// 组件级别
 "wordPanel": {
   "correct": "Correct!",
   "incorrect": "Try Again"
@@ -79,7 +79,7 @@ export const currentLanguageAtom = atom<string>('en')
 export const useLanguageChange = () => {
   const { i18n } = useTranslation()
   const [, setCurrentLanguage] = useAtom(currentLanguageAtom)
-  
+
   useEffect(() => {
     setCurrentLanguage(i18n.language)
   }, [i18n.language])
@@ -94,12 +94,12 @@ const LanguageSwitcher = () => {
   const languages = [
     { code: 'en', name: 'English', flag: '🇺🇸' },
     { code: 'zh-TW', name: '繁體中文', flag: '🇹🇼' },
-    { code: 'zh-CN', name: '简体中文', flag: '🇨🇳' }
+    { code: 'zh-CN', name: '简体中文', flag: '🇨🇳' },
   ]
-  
+
   return (
     <select value={i18n.language} onChange={(e) => i18n.changeLanguage(e.target.value)}>
-      {languages.map(lang => (
+      {languages.map((lang) => (
         <option key={lang.code} value={lang.code}>
           {lang.flag} {lang.name}
         </option>
@@ -114,7 +114,7 @@ const LanguageSwitcher = () => {
 ### 第一阶段：基础架构
 
 1. 安装依赖包
-2. 创建i18n初始化配置
+2. 创建 i18n 初始化配置
 3. 创建翻译资源文件（空文件）
 
 ### 第二阶段：核心翻译
@@ -147,9 +147,9 @@ const LanguageSwitcher = () => {
 
 ## 10. 实施步骤
 
-1. 切换到Code模式
-2. 安装i18next相关依赖
-3. 创建i18n配置和翻译文件
+1. 切换到 Code 模式
+2. 安装 i18next 相关依赖
+3. 创建 i18n 配置和翻译文件
 4. 逐步替换中文文本
 5. 集成语言切换功能
 6. 测试和优化
