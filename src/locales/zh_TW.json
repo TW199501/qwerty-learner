@@ -225,5 +225,19 @@
     "rotateToSwitch": "旋轉切換",
     "mobileOptimized": "行動裝置最佳化",
     "tabletOptimized": "平板電腦最佳化"
+  },
+  "warnings": {
+    "inputMethodWarning": "您正在使用輸入法，請關閉輸入法。"
+  },
+  "dataManagement": {
+    "export": "資料匯出",
+    "exportButton": "匯出資料",
+    "exportWarning": "為了您的資料安全，請不要修改匯出的資料檔案。",
+    "import": "資料匯入",
+    "importButton": "匯入資料",
+    "importWarning": "請注意，匯入資料將完全覆蓋當前資料。請謹慎操作。",
+    "exportError": "匯出失敗，請重試",
+    "exporting": "匯出中...",
+    "export": "匯出"
   }
 }

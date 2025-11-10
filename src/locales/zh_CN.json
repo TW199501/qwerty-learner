@@ -225,5 +225,19 @@
     "rotateToSwitch": "旋转切换",
     "mobileOptimized": "移动设备优化",
     "tabletOptimized": "平板电脑优化"
+  },
+  "warnings": {
+    "inputMethodWarning": "您正在使用输入法，请关闭输入法。"
+  },
+  "dataManagement": {
+    "export": "数据导出",
+    "exportButton": "导出数据",
+    "exportWarning": "为了您的数据安全，请不要修改导出的数据文件。",
+    "import": "数据导入",
+    "importButton": "导入数据",
+    "importWarning": "请注意，导入数据将完全覆盖当前数据。请谨慎操作。",
+    "exportError": "导出失败，请重试",
+    "exporting": "导出中...",
+    "export": "导出"
   }
 }

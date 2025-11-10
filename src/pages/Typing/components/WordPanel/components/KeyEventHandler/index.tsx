@@ -2,17 +2,19 @@ import type { WordUpdateAction } from '../InputHandler'
 import { TypingContext } from '@/pages/Typing/store'
 import { isChineseSymbol, isLegal } from '@/utils'
 import { useCallback, useContext, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export default function KeyEventHandler({ updateInput }: { updateInput: (updateObj: WordUpdateAction) => void }) {
   // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
   const { state } = useContext(TypingContext)!
+  const { t } = useTranslation()
 
   const onKeydown = useCallback(
     (e: KeyboardEvent) => {
       const char = e.key
 
       if (isChineseSymbol(char)) {
-        alert('您正在使用输入法，请关闭输入法。')
+        alert(t('warnings.inputMethodWarning'))
         return
       }
 
@@ -20,7 +22,7 @@ export default function KeyEventHandler({ updateInput }: { updateInput: (updateO
         updateInput({ type: 'add', value: char, event: e })
       }
     },
-    [updateInput],
+    [updateInput, t],
   )
 
   useEffect(() => {

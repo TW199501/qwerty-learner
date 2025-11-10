@@ -4,6 +4,7 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import { saveAs } from 'file-saver'
 import type { FC } from 'react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import * as XLSX from 'xlsx'
 
 type DropdownProps = {
@@ -12,6 +13,7 @@ type DropdownProps = {
 
 const DropdownExport: FC<DropdownProps> = ({ renderRecords }) => {
   const [isExporting, setIsExporting] = useState(false)
+  const { t } = useTranslation()
 
   const formatTimestamp = (date: any) => {
     const year = date.getFullYear()
@@ -92,7 +94,7 @@ const DropdownExport: FC<DropdownProps> = ({ renderRecords }) => {
       }
     } catch (error) {
       console.error('Export failed:', error)
-      alert('导出失败，请重试')
+      alert(t('dataManagement.exportError'))
     } finally {
       setIsExporting(false)
     }
@@ -103,7 +105,7 @@ const DropdownExport: FC<DropdownProps> = ({ renderRecords }) => {
       <DropdownMenu.Root>
         <DropdownMenu.Trigger asChild>
           <button className="my-btn-primary h-8 shadow transition hover:bg-indigo-600 disabled:opacity-50" disabled={isExporting}>
-            {isExporting ? '导出中...' : '导出'}
+            {isExporting ? t('dataManagement.exporting') : t('dataManagement.export')}
           </button>
         </DropdownMenu.Trigger>
         <DropdownMenu.Content className="mt-1 rounded bg-indigo-500 text-white shadow-lg">

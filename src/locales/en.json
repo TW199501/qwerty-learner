@@ -225,5 +225,19 @@
     "rotateToSwitch": "Rotate to switch",
     "mobileOptimized": "Mobile optimized",
     "tabletOptimized": "Tablet optimized"
+  },
+  "warnings": {
+    "inputMethodWarning": "You are using an input method, please turn it off."
+  },
+  "dataManagement": {
+    "export": "Data Export",
+    "exportButton": "Export Data",
+    "exportWarning": "For your data security, please do not modify the exported data files.",
+    "import": "Data Import",
+    "importButton": "Import Data",
+    "importWarning": "Please note that importing data will completely overwrite the current data. Please operate with caution.",
+    "exportError": "Export failed, please try again",
+    "exporting": "Exporting...",
+    "export": "Export"
   }
 }

@@ -2,11 +2,13 @@ import type { WordUpdateAction } from '../InputHandler'
 import { TypingContext } from '@/pages/Typing/store'
 import type { FormEvent } from 'react'
 import { useCallback, useContext, useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export default function TextAreaHandler({ updateInput }: { updateInput: (updateObj: WordUpdateAction) => void }) {
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
   const { state } = useContext(TypingContext)!
+  const { t } = useTranslation()
 
   useEffect(() => {
     if (!textareaRef.current) return
@@ -46,7 +48,7 @@ export default function TextAreaHandler({ updateInput }: { updateInput: (updateO
       onInput={onInput}
       onBlur={onBlur}
       onCompositionStart={() => {
-        alert('您正在使用输入法，请关闭输入法。')
+        alert(t('warnings.inputMethodWarning'))
       }}
     ></textarea>
   )
